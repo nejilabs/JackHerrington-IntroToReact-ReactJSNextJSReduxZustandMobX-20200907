@@ -1,0 +1,15 @@
+.title {
+  text-align: center;
+}
+
+thead {
+  text-align: left;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 0.2rem;
+  font-size: large;
+}
