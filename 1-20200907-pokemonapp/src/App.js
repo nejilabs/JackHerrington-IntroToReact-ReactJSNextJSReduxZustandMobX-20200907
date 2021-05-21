@@ -1,8 +1,6 @@
 // START: IMPORTS ---
 import React from "react";
-import pokemon from "./pokemon.json";
 import PropTypes from "prop-types";
-
 import "./App.css";
 // END: IMPORTS ---
 
@@ -77,12 +75,18 @@ PokemonInfo.propTypes = PropTypes.shape({
 // START: COMPONENT ---
 function App() {
   // START: STATES
+  const [pokemons, setPokemons] = React.useState([])
+
   const [filter, setFilter] = React.useState("")
   const [selectedPokemon, setSelectedPokemon] = React.useState(null)
-
   // END: STATES
 
   // START: METHODS
+  React.useEffect(() => {
+    fetch("http://localhost:3000/pokemon.json")
+      .then((res) => res.json())
+      .then(data => setPokemons(data))
+  }, [])
   // END: METHODS
 
   // START: TEMPLATE
@@ -116,7 +120,7 @@ function App() {
               <td>Type</td>
             </thead>
             <tbody>
-              {pokemon
+              {pokemons
                 .filter((pokemon) => pokemon.name.english.toLowerCase().includes(filter.toLowerCase()))
                 .slice(0, 20)
                 .map((pokemon) => (
