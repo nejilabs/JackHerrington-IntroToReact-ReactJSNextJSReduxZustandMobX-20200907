@@ -1,10 +1,11 @@
 // START: IMPORTS ---
 import React from "react";
 import PropTypes from "prop-types";
+
+import Styled from "@emotion/styled"
+import { Button } from '@material-ui/core'
 import "./App.css";
 // END: IMPORTS ---
-
-
 
 // START: INNER COMPONENTS ---
 // Start: PokemonRow
@@ -13,7 +14,11 @@ const PokemonRow = ({ pokemon, onSelect }) => (
     <td>{pokemon.name.english}</td>
     <td>{pokemon.type.join(", ")}</td>
     <td>
-      <button onClick={() => onSelect(pokemon)}>Select</button>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => onSelect(pokemon)}
+      >Select</Button>
     </td>
   </tr >
 );
@@ -69,14 +74,33 @@ PokemonInfo.propTypes = PropTypes.shape({
 });
 // End: PokemonInfo
 
-// END: INNER COMPONENTS ---
+const Title = Styled.h1`
+  text-align: center;
+`
 
+const TwoColumnLayout = Styled.div`
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-column-gap: 1re;
+`
+
+const Container = Styled.div` 
+  margin: auto;
+  width: 800;
+  paddingTop: 1em;
+`
+
+const Input = Styled.input`
+    width: 100%;
+  padding: 0.2rem;
+  font-size: large;
+`
+// END: INNER COMPONENTS ---
 
 // START: COMPONENT ---
 function App() {
   // START: STATES
   const [pokemons, setPokemons] = React.useState([])
-
   const [filter, setFilter] = React.useState("")
   const [selectedPokemon, setSelectedPokemon] = React.useState(null)
   // END: STATES
@@ -91,26 +115,12 @@ function App() {
 
   // START: TEMPLATE
   return (
-    <div
-      style={{
-        margin: "auto",
-        width: 800,
-        paddingTop: "1em",
-      }}
-    >
-      <h1 className="title">Pokemon Search</h1>
-
-
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "70% 30%",
-          gridColumnGap: "1rem"
-        }}
-      >
+    <Container>
+      <Title>Pokemon Search</Title>
+      <TwoColumnLayout>
         <div>
           {/* START: SEARCH FILTER INPUT */}
-          <input type="text" value={filter} onChange={(e) => setFilter(e.target.value)} />
+          <Input type="text" value={filter} onChange={(e) => setFilter(e.target.value)} />
           {/* END: SEARCH FILTER INPUT */}
 
           {/* START: TABLE */}
@@ -134,12 +144,10 @@ function App() {
         {selectedPokemon && (
           <PokemonInfo {...selectedPokemon} />
         )}
-      </div>
-
-    </div>
+      </TwoColumnLayout>
+    </Container>
   );
   // END: TEMPLATE
 }
 // END: COMPONENT ---
-
 export default App;
