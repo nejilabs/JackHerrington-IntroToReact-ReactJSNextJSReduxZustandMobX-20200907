@@ -1,15 +1,13 @@
-// START: IMPORTS ---
-import React from "react";
-import PokemonType from '../PokemonType'
-import PokemonContext from '../PokemonContext'
-// END: IMPORTS ---
+import React, { useContext } from "react";
 
-// Start: PokemonInfo
+import PokemonContext from "../PokemonContext";
+
 const PokemonInfo = () => {
-  const { selectedPokemon } = React.useContext(PokemonContext)
+  const {
+    state: { selectedPokemon },
+  } = useContext(PokemonContext);
 
   return selectedPokemon ? (
-
     <div>
       <h2>{selectedPokemon.name.english}</h2>
       <table>
@@ -25,7 +23,5 @@ const PokemonInfo = () => {
     </div>
   ) : null;
 };
-// End: PokemonInfo
 
-PokemonInfo.propTypes = PokemonType;
 export default PokemonInfo;

@@ -1,29 +1,29 @@
-// START: IMPORTS ---
 import React from "react";
 import PropTypes from "prop-types";
+import { Button } from "@material-ui/core";
 
-import PokemonType from '../PokemonType'
-import { Button } from '@material-ui/core'
-// END: IMPORTS ---
+import PokemonType from "../PokemonType";
 
-// Start: PokemonRow
-const PokemonRow = ({ pokemon, onSelect }) => (
-  <tr key={pokemon.id}>
-    <td>{pokemon.name.english}</td>
-    <td>{pokemon.type.join(", ")}</td>
-    <td>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={() => onSelect(pokemon)}
-      >Select</Button>
-    </td>
-  </tr >
+const PokemonRow = ({ pokemon, onClick }) => (
+  <>
+    <tr key={pokemon.id}>
+      <td>{pokemon.name.english}</td>
+      <td>{pokemon.type.join(", ")}</td>
+      <td>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => onClick(pokemon)}
+        >
+          More Information
+        </Button>
+      </td>
+    </tr>
+  </>
 );
-// End: PokemonRow
 
 PokemonRow.propTypes = {
-  pokemon: PropTypes.arrayOf(PokemonType)
+  pokemon: PropTypes.arrayOf(PokemonType),
 };
 
 export default PokemonRow;

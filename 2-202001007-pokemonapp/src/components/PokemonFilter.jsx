@@ -8,9 +8,9 @@ const Input = Styled.input`
 `
 
 const PokemonFilter = () => {
-  const { filter, setFilter } = React.useContext(PokemonContext);
+  const { state: { filter }, dispatch } = React.useContext(PokemonContext);
   return (
-    <Input type="text" value={filter} onChange={(e) => setFilter(e.target.value)} />
+    <Input type="text" value={filter} onChange={(e) => dispatch({ type: "SET_FILTER", payload: e.target.value })} />
 
   )
 }
