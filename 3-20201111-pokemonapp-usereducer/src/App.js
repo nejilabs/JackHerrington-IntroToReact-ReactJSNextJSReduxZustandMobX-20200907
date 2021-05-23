@@ -46,7 +46,7 @@ const pokemonReducer = (state, { type, payload }) => {
         selectedPokemon: payload,
       };
     default:
-      throw new Error();
+      throw new Error('No Action');
   }
 };
 // END: REDUCER
