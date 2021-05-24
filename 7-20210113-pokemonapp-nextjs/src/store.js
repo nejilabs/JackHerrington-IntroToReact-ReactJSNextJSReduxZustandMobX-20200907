@@ -39,7 +39,7 @@ class Store {
 
 
   // START: SETTERS
-  setPokemon(pokemons) {
+  setPokemons(pokemons) {
     this.pokemons = pokemons
   }
   setFilter(filter) {
@@ -61,7 +61,7 @@ const store = new Store()
 if (typeof window !== 'undefined') {
   fetch("/pokemon.json")
     .then((resp) => resp.json())
-    .then((pokemons) => store.setPokemon(pokemons))
+    .then((pokemons) => store.setPokemons(pokemons))
 }
 
 // EXPORT STORE
