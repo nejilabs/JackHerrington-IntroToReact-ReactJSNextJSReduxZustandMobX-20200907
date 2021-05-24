@@ -1,4 +1,5 @@
 import { Button } from "@material-ui/core";
+import PropTypes from "prop-types";
 
 const PokemonRow = ({ pokemon, onClick }) => (
   <>
@@ -18,5 +19,8 @@ const PokemonRow = ({ pokemon, onClick }) => (
   </>
 );
 
+PokemonRow.propTypes = {
+  pokemons: PokemonType,
+};
 
 export default PokemonRow;
