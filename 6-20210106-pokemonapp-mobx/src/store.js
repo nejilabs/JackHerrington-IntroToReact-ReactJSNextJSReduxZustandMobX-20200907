@@ -1,20 +1,44 @@
-import { makeAutoObservable } from 'mobx'
+import {
+  // makeAutoObservable,
+  makeObservable,
+  observable,
+  computed
+} from 'mobx'
 
+// START: STORE CLASS --- ---
 class Store {
-  // START: OBSERVABLES
+  // START: STATES ---
   pokemons = []
   filter = ""
   selectedPokemon = null
+  // END: STATES ---
 
-  // END: OBSERVABLES
 
+  // START: METHODS ---
   // START: CONSTRUCTORS
   constructor() {
-    makeAutoObservable(this)
+    // makeAutoObservable(this)
+
+    makeObservable(this, {
+      pokemons: observable,
+      filter: observable,
+      selectedPokemon: observable,
+      filteredPokemons: computed
+    })
   }
   // END: CONSTRUCTORS
 
-  // START: ACTIONS
+  // START: GETTERS
+  get filteredPokemons() {
+    return this.pokemons
+      .filter(({ name: { english } }) =>
+        english.toLocaleLowerCase().includes(this.filter.toLocaleLowerCase())
+      )
+  }
+  // END: GETTERS
+
+
+  // START: SETTERS
   setPokemon(pokemons) {
     this.pokemons = pokemons
   }
@@ -24,8 +48,11 @@ class Store {
   setSelectedPokemon(selectedPokemon) {
     this.selectedPokemon = selectedPokemon;
   }
-  // END: ACTIONS
+  // END: SETTERS
+  // END: METHODS ---
 }
+// END: STORE CLASS --- ---
+
 
 // INSTANTIATE STORE OBJECT
 const store = new Store()
@@ -33,7 +60,7 @@ const store = new Store()
 // FETCH POKEMONS DATA
 fetch("http://localhost:3000/pokemon.json")
   .then((resp) => resp.json())
-  .then((pokemons) => store.setPokemon(pokemons);
+  .then((pokemons) => store.setPokemon(pokemons))
 
 // EXPORT STORE
 export default store

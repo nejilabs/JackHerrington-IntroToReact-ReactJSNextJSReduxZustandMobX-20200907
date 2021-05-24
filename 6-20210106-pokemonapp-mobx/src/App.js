@@ -3,7 +3,8 @@ import React from "react";
 import styled from "@emotion/styled";
 import { CssBaseline } from "@material-ui/core";
 
-import useStore from './store'
+import { observer } from 'mobx-react'
+import store from './store'
 
 import PokemonInfo from "./components/PokemonInfo";
 import PokemonFilter from "./components/PokemonFilter";
@@ -31,15 +32,8 @@ const TwoColumnLayout = styled.div`
 
 // START: COMPONENT ---
 function App() {
-  // Start: States
-  const pokemons = useStore(state => state.pokemons)
-  // End: States
-
-  // Start: Methods
-  // End: Methods
-
   // Start: Templates
-  if (!pokemons) {
+  if (!store.pokemons) {
     return <div>Loading data</div>;
   }
   return (
@@ -60,4 +54,4 @@ function App() {
 }
 // END: COMPONENT ---
 
-export default App;
+export default observer(App);
