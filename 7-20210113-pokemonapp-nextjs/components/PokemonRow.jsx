@@ -1,10 +1,17 @@
+import Link from 'next/link'
 import { Button } from "@material-ui/core";
 import PropTypes from "prop-types";
+
+import PokemonType from '../src/PokemonType'
 
 const PokemonRow = ({ pokemon, onClick }) => (
   <>
     <tr>
-      <td>{pokemon.name.english}</td>
+      <td>
+        <Link href={`pokemon/${pokemon.id}`}>
+          <a>{pokemon.name.english}</a>
+        </Link>
+      </td>
       <td>{pokemon.type.join(", ")}</td>
       <td>
         <Button
