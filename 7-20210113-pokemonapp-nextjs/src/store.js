@@ -58,9 +58,11 @@ class Store {
 const store = new Store()
 
 // FETCH POKEMONS DATA
-fetch("http://localhost:3000/pokemon.json")
-  .then((resp) => resp.json())
-  .then((pokemons) => store.setPokemon(pokemons))
+if (typeof window !== 'undefined') {
+  fetch("/pokemon.json")
+    .then((resp) => resp.json())
+    .then((pokemons) => store.setPokemon(pokemons))
+}
 
 // EXPORT STORE
 export default store
