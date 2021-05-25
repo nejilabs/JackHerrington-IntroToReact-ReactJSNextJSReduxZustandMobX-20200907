@@ -21,9 +21,20 @@ const TypeHeader = styled.span`
   font-weight: bold;
 `;
 
-export default observer(() => {
+
+export async function getServerSideProps(context) {
+  const pokemons = await (await fetch("http://localhost:3000/pokemon.json")).json()
+  const pokemon = pokemons.find((p) => p.id === parseInt(context.query.id));
+  return {
+    props: {
+      pokemon
+    },
+  }
+}
+
+export default observer(({ pokemon }) => {
   const router = useRouter();
-  const pokemon = store.pokemons.find((p) => p.id === parseInt(router.query.id));
+
   return (
     <PageContainer>
       <CssBaseline />

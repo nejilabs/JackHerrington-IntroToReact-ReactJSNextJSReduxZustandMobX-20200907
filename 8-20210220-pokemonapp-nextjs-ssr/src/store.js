@@ -58,11 +58,11 @@ class Store {
 const store = new Store()
 
 // FETCH POKEMONS DATA
-if (typeof window !== 'undefined') {
-  fetch("/pokemon.json")
-    .then((resp) => resp.json())
-    .then((pokemons) => store.setPokemons(pokemons))
-}
+// if (typeof window !== 'undefined') {
+//   fetch("/pokemon.json")
+//     .then((resp) => resp.json())
+//     .then((pokemons) => store.setPokemons(pokemons))
+// }
 
 // EXPORT STORE
 export default store
