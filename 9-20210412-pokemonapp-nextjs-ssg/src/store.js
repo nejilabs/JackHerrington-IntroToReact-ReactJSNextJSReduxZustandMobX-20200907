@@ -8,7 +8,7 @@ import {
 // START: STORE CLASS --- ---
 class Store {
   // START: STATES ---
-  pokemons = []
+  pokemons = require('./pokemon.json')
   filter = ""
   selectedPokemon = null
   // END: STATES ---

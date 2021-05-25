@@ -21,10 +21,22 @@ const TypeHeader = styled.span`
   font-weight: bold;
 `;
 
+export async function getStaticPaths() {
+  const pokemons = require('../../src/pokemon.json')
+  return {
+    paths: pokemons.map((pokemon) => ({
+      params: {
+        id: pokemon.id.toString()
+      }
+    })),
+    fallback: false
+  };
+}
 
-export async function getServerSideProps(context) {
-  const pokemons = await (await fetch("http://localhost:3000/pokemon.json")).json()
-  const pokemon = pokemons.find((p) => p.id === parseInt(context.query.id));
+
+export async function getStaticProps(context) {
+  const pokemons = require('../../src/pokemon.json')
+  const pokemon = pokemons.find((p) => p.id === parseInt(context.params.id));
   return {
     props: {
       pokemon
@@ -32,7 +44,7 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default observer(({ pokemon }) => {
+export default ({ pokemon }) => {
   const router = useRouter();
 
   return (
@@ -67,4 +79,4 @@ export default observer(({ pokemon }) => {
       </div>
     </PageContainer>
   );
-});
+};

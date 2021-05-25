@@ -26,20 +26,10 @@ const TwoColumnLayout = styled.div`
 `;
 // END: STYLED COMPONENTS
 
-export async function getServerSideProps() {
-  const pokemons = await (await fetch("http://localhost:3000/pokemon.json")).json()
-  return {
-    props: {
-      pokemons
-    },
-  }
-}
 
 
 // START: COMPONENT ---
-const Home = ({ pokemons }) => {
-  store.setPokemons(pokemons);
-
+const Home = () => {
   // Start: Templates
   if (!store.pokemons) {
     return <div>Loading data</div>;
