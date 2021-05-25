@@ -18,6 +18,7 @@ Description:  We take our NextJS app and use Server Side Rendering to render the
 to save a copy of the app's next js csr for,  just make a copy of the project and rename it accordingly with -ssr. then edit accordingly such as package.json
 
 ## 16.2 getServerSideProps
+[Basic Features: Data Fetching | Next.js](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering)
 
 Add this above pages/index.js @component
 
